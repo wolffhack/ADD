@@ -8,8 +8,8 @@ require("hardhat-contract-sizer");
 require("@openzeppelin/hardhat-upgrades");
 require("hardhat-deploy-ethers")
 require("./tasks");
-// require('dotenv').config();
-require("@chainlink/env-enc").config();
+require('dotenv').config();
+// require("@chainlink/env-enc").config();
 
 const SOLC_SETTINGS = {
   optimizer: {
@@ -53,12 +53,12 @@ module.exports = {
     Calibration: {
       chainId: 314159,
       url: "https://api.calibration.node.glif.io/rpc/v1",
-      accounts: [PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY],
     },
     FilecoinMainnet: {
       chainId: 314,
       url: "https://api.node.glif.io",
-      accounts: [PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   paths: {
