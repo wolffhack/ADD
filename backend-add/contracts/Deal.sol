@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
+/********************************************
+
+This contract is not ready for use *
+********************************************/
+
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /// @title ArtworksDataDAO - Decentralized platform for managing artworks data on the Filecoin network
