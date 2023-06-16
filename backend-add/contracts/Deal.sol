@@ -4,6 +4,7 @@ pragma solidity 0.8.17;
 /********************************************
 
 This contract is not ready for use *
+it has some errors that need to be resolved.
 ********************************************/
 
 import "@openzeppelin/contracts/access/Ownable.sol";
