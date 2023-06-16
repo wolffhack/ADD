@@ -1,49 +1,68 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 /// @title ArtworksDataDAO - Decentralized platform for managing artworks data on the Filecoin network
 /// @notice Allows artists, collectors, and enthusiasts to manage, incentivize, and invest in artworks
-contract ArtworksDataDAO is Ownable {
+contract ArtWorksMinter is
+    ERC721,
+    ERC721Enumerable,
+    ERC721URIStorage,
+    ERC721Burnable,
+    Ownable
+{
+    using Counters for Counters.Counter;
+
+    Counters.Counter private _tokenIdCounter;
+
     struct Artwork {
         address artist;
         string title;
         string description;
         uint256 price;
+        
     }
 
     mapping(uint256 => Artwork) public artworks;
-    uint256 public totalArtworks;
 
     event ArtworkAdded(uint256 indexed id, address artist, string title);
     event ArtworkSold(uint256 indexed id, address buyer, uint256 price);
 
-     constructor() 
-  
-    {
-
-    }
+    constructor() ERC721("ArtWorksMinter", "ADDM") {}
 
     /// @dev Adds a new artwork to the DAO
     /// @param _title Title of the artwork
     /// @param _description Description of the artwork
     /// @param _price Price of the artwork
 
-    function addArtwork(
+    function mintArtwork(
+        address to,
         string memory _title,
         string memory _description,
-        uint256 _price
-        //art
-    ) external onlyOwner {
-        totalArtworks++;
-        artworks[totalArtworks] = Artwork(
+        uint256 memory _price,
+        string memory uri
+    )
+        external
+        onlyOwner
+    {
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        // totalArtworks++;
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, uri);
+        artworks[tokenId] = Artwork(
             msg.sender,
             _title,
             _description,
             _price
         );
-        emit ArtworkAdded(totalArtworks, msg.sender, _title);
+        emit ArtworkAdded(tokenId, msg.sender, _title);
     }
 
     /// @dev Allows a buyer to purchase an artwork
@@ -95,5 +114,37 @@ contract ArtworksDataDAO is Ownable {
 
     function getTotalArtworks() external view returns (uint256) {
         return totalArtworks;
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal override(ERC721, ERC721Enumerable) {
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function _burn(
+        uint256 tokenId
+    ) internal override(ERC721, ERC721URIStorage) {
+        super._burn(tokenId);
+    }
+
+    function tokenURI(
+        uint256 tokenId
+    ) public view override(ERC721, ERC721URIStorage) returns (string memory) {
+        return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(
+        bytes4 interfaceId
+    )
+        public
+        view
+        override(ERC721, ERC721Enumerable, ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }

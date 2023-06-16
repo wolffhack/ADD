@@ -8,8 +8,8 @@ require("hardhat-contract-sizer");
 require("@openzeppelin/hardhat-upgrades");
 require("hardhat-deploy-ethers")
 require("./tasks");
-require('dotenv').config();
-// require("@chainlink/env-enc").config();
+// require('dotenv').config();
+require("@chainlink/env-enc").config();
 
 const SOLC_SETTINGS = {
   optimizer: {
@@ -19,10 +19,14 @@ const SOLC_SETTINGS = {
   },
 };
 
+URL_MUMBAI = process.env.MUMBAI_URL,
+POLYGONSCAN = process.env.MUMBAI_SCAN
+
 module.exports = {
   etherscan: {
     apiKey: {
       // fvm: process.env.FILLFOX_API_KEY,
+      polygonMumbai : POLYGONSCAN,
     },
   },
 
@@ -58,6 +62,11 @@ module.exports = {
     FilecoinMainnet: {
       chainId: 314,
       url: "https://api.node.glif.io",
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    polygonMumbai : {
+      chainId: 80001,
+      url: URL_MUMBAI,
       accounts: [process.env.PRIVATE_KEY],
     },
   },

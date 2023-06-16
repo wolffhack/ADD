@@ -5,8 +5,9 @@ pragma solidity ^0.8.17;
 contract ArtworksAccess {
     enum AccessLevel {
         None, 
-        gallery, //gallery can access the art for exhibition with Owner and managers' permision 
-        manager,// Ehthuriasts who are passionate to build the community
+        Gallery, //gallery can access the art for exhibition with Owner and managers' permision 
+        Manager,// Ehthuriasts who are passionate to build the community
+        Artist,
         Owner //artworks owner
     }
 
