@@ -1,0 +1,11 @@
+{
+  "name": "ADD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wolffhack/ADD",
+  "author": "Jasmine <yami2733@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-router-dom": "^6.13.0"
+  }
+}

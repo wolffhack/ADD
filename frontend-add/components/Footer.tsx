@@ -1,8 +1,8 @@
 import {Flex} from "@chakra-ui/react"
 export default function Footer(){
     return(
-        <Flex h={"10rem"} bgColor={"blue.400"}>
-            Footer
-        </Flex>
+        <><Flex h={"5rem"} bgColor={"blue.400"}>
+         Find us on github: https://github.com/wolffhack/ADD
+            </Flex></>
     )
 }

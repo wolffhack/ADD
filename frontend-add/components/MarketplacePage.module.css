@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.listedItems {
+  margin-bottom: 20px;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.artist {
+  margin-bottom: 10px;
+}
+
+.buyButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sellButton {
+  background-color: #
+
+}
