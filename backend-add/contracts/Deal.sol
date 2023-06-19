@@ -2,6 +2,7 @@
 pragma solidity 0.8.17;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+/* This contract is not ready for use. we are working to make some correction on this contract. */
 
 /// @title ArtworksDataDAO - Decentralized platform for managing artworks data on the Filecoin network
 /// @notice Allows artists, collectors, and enthusiasts to manage, incentivize, and invest in artworks
